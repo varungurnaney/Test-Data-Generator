@@ -1,5 +1,11 @@
 # Test Data Generator 
 
+
+### Install 
+
+1. Clone to repo - `git clone https://github.com/varungurnaney/Test-Data-Generator.git` 
+2. Install dependecies - `pip3 install -r requirements.txt`
+
 ### Usage
 
 1. `python3 app.py -c [:count of records required] -k [:API key]`
