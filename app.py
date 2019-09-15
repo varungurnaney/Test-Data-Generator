@@ -24,9 +24,11 @@ class Generator():
 
 
 	def get_samples_using_service(self):
-		if html.escape(sys.argv[3], quote=True)=="-k":
+		if html.escape(sys.argv[3], quote=True)=="-k" and len(sys.argv)>6:
 			headers = {'X-API-Key': html.escape(sys.argv[4], quote=True)}
-		else: 
+		else:
+
+			print ('[{"Error Code: 103", "Message": "Key is invalid"}]') 
 			return '[{"Error Code: 103", "Message": "Key is invalid"}]' 
 
 		response = requests.get('https://my.api.mockaroo.com/test_medical_data.json?count='+str(self.count)+'', headers=headers)
@@ -34,6 +36,7 @@ class Generator():
 		if response.status_code == 200: 
 			return response.json() 
 		else: 
+			print('[{"Error Code: 102", "Message": "Unable to reach test data service"}]')
 			return '[{"Error Code: 102", "Message": "Unable to reach test data service"}]'
 			
 
@@ -70,9 +73,6 @@ class Generator():
 				'service_amount_paid': randint(40,250),
 				'service_amount_currency': service_amount_currency[randint(0,1)]
 				})
-
-			
-
 
 		return response
 
